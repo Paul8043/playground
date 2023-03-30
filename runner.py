@@ -1,0 +1,3 @@
+import anyscript
+
+anyscript.echo
