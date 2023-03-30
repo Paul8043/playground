@@ -2,6 +2,14 @@
 
 import cadquery as cq
 
+if 'show_object' not in globals():
+    def show_object(self, name, options={}, **kwargs):
+        return
+    
+if 'debug' not in globals():    
+    def debug(self, obj, args={}):
+        return
+
 part = cq.Workplane("XY").box(20,20,20)
 
 part = part.faces("<Z").workplane(centerOption="CenterOfMass").text("-Z",5,-1)
