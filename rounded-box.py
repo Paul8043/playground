@@ -3,7 +3,7 @@
 import cadquery as cq
 
 result = (
-   cq.Sketch()
+   cq.Workplane()
    .box(100, 100, 100)
    .edges()
    .fillet(10)
