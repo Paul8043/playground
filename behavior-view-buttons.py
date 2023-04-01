@@ -10,38 +10,31 @@ if 'debug' not in globals():
     def debug(self, obj, args={}):
         return
 
-part = cq.Workplane("XY").box(20,20,20)
+part = cq.Workplane("XY").box(30,30,30)
 
-part = part.faces("<Z").workplane(centerOption="CenterOfMass").text("-Z",5,-1)
-part = part.faces(">Z").workplane(centerOption="CenterOfMass").text("+Z",5,-1)
-part = part.faces("<X").workplane(centerOption="CenterOfMass").text("-X",5,-1)
-part = part.faces(">X").workplane(centerOption="CenterOfMass").text("+X",5,-1)
-part = part.faces("<Y").workplane(centerOption="CenterOfMass").text("-Y",5,-1)
-part = part.faces(">Y").workplane(centerOption="CenterOfMass").text("+Y",5,-1)
+part = part.faces("<Z").workplane(centerOption="CenterOfMass").text("bottom",5,-1)  # bottom
+part = part.faces(">Z").workplane(centerOption="CenterOfMass").text("top",5,-1)     # top
+part = part.faces("<X").workplane(centerOption="CenterOfMass").text("left",5,-1)    # left
+part = part.faces(">X").workplane(centerOption="CenterOfMass").text("right",5,-1)   # right
+part = part.faces("<Y").workplane(centerOption="CenterOfMass").text("back",5,-1)    # back
+part = part.faces(">Y").workplane(centerOption="CenterOfMass").text("front",5,-1)   # front
 
 bottom = part.faces("<Z")
 top    = part.faces(">Z")
 left   = part.faces("<X")
 right  = part.faces(">X")
-front  = part.faces("<Y")
-back   = part.faces(">Y")
+back   = part.faces("<Y")
+front  = part.faces(">Y")
 
 show_object(part,name="part",options={"alpha":0.0,"color":(255,170,0)})
 
-#debug(bottom,name="bottom")
-#debug(top,name="top")
-#debug(left,name="left")
-#debug(right,name="right")
 debug(front,name="front")
-#debug(back,name="back")
-
-#rotated = bottom.rotate([0,0,0],[0,0,1],180)
-#show_object(rotated,name="rotated",options={"alpha":0.0,"color":(0,128,0)})
 
 # Behavior:
-# Top    (Shift F3): +Z
-# Bottom (Shift F4): Z-  !!! upside-down !!!
-# Front  (Shift F5): +Y  !!! back !!!
-# Back   (Shift F6): -Y  !!! front !!!
-# Left   (Shift F7): -X
-# Right  (Shift F8): +X
+# Iso    (Shift+F2): back-top-right   !!! no front !!!
+# Top    (Shift F3): top
+# Bottom (Shift F4): bottom           !!! upside-down !!!
+# Front  (Shift F5): front
+# Back   (Shift F6): back
+# Left   (Shift F7): left
+# Right  (Shift F8): right
