@@ -35,12 +35,18 @@ import cadquery as cq
 
 outer  = cq.Workplane("XY").rect(440,140)                                  # outer
 inner  = cq.Workplane("XY").rect(420,120)                                  # inner
-cutout = cq.Workplane("XY").rect(85,27).translate((-0.5*(420-85)-5,0,0))   # cutout
+cutout = cq.Workplane("XY").rect(85,18).translate((-0.5*(420-85)-5,0,0))   # cutout
 
 all    = cq.Workplane("XY").rect(440,140).rect(420,120).rect(85,27).translate((-0.5*(420-85)-2.5,0,0))  # last wins
 #show_object(all,name="all",options={"alpha":0.2,"color":(255,170,0)})
 
-show_object(outer,name="outer",options={"alpha":0.2,"color":(255,170,0)})
-show_object(inner,name="inner",options={"alpha":0.2,"color":(255,170,0)})
-show_object(cutout,name="cutout",options={"alpha":0.2,"color":(255,170,0)})
+#show_object(outer,name="outer",options={"alpha":0.2,"color":(255,170,0)})
+#show_object(inner,name="inner",options={"alpha":0.2,"color":(255,170,0)})
+#show_object(cutout,name="cutout",options={"alpha":0.2,"color":(255,170,0)})
 
+# idea from last night
+s1 = cq.Sketch().rect(440,140).edges()
+s2 = cq.Sketch().rect(420,120).edges()
+s3 = cq.Sketch().rect(85,18).edges()
+wp =cq.Workplane("XY").placeSketch(s1,s2,s3)
+#show_object(wp,name="wp",options={"alpha":0.2,"color":(255,170,0)})    # does not show anything
